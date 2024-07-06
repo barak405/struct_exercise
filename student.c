@@ -4,13 +4,14 @@
 #define NEW_LINE_SIZE 2 
 static int get_input_string(char * new_string, int max_size, const char* prompt ) {
     printf("%s", prompt);
-    if(fgets(new_string,max_size+NEW_LINE_SIZE,stdin) == NULL) {
-        printf("fgets == null");
+    if(scanf("%s", new_string) == 0) {
+        printf("scanf failed");
         return false;
     }
+
     int len = strlen(new_string);
-    if ( len <= NEW_LINE_SIZE ) { return false;}
-    new_string[len -NEW_LINE_SIZE ] = 0; 
+    if ( len >= max_size ) { return false;}
+
     return true; 
 
 }
